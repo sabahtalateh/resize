@@ -1,0 +1,17 @@
+{
+  "name": "resize_example",
+  "version": "1.0.0",
+  "description": "",
+  "main": "run.js",
+  "scripts": {
+    "resize": "node resize",
+    "clean_input": "mv input/* old_input",
+    "clean_resized": "mv resized/* old_resized"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "fs": "0.0.1-security",
+    "sharp": "^0.23.1"
+  }
+}
