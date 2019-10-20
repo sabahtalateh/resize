@@ -3,3 +3,8 @@ input/*
 old_input/*
 resized/*
 old_resized/*
+
+!input/.gitkeep
+!old_input/.gitkeep
+!resized/.gitkeep
+!old_resized/.gitkeep
