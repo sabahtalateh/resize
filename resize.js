@@ -10,7 +10,17 @@ const width = parseInt(process.argv[2]);
 const height = parseInt(process.argv[3]);
 
 // Parse Quality
-let quality = process.argv[4];
+let fit = process.argv[4];
+if (fit === undefined) {
+    fit = 'contain';
+}
+if (!(fit === 'cover' || fit === 'contain')) {
+    console.log(`Invalid fit [${fit}]. cover or contain avaliable`);
+    return
+}
+
+// Parse Quality
+let quality = process.argv[5];
 if (quality === undefined) {
     quality = 50;
 } else {
@@ -18,8 +28,8 @@ if (quality === undefined) {
 }
 
 // Parse Postfix
-let postfix = process.argv[5];
-if(typeof process.argv[5] === 'undefined') {
+let postfix = process.argv[6];
+if(postfix === undefined) {
     postfix = "s";
 }
 
@@ -34,7 +44,7 @@ fs.readdirSync('input').forEach(file => {
     const resizeFilePath = `${resizedFolder}/${fileNameNoExt}-${postfix}.jpg`;
 
     sharp(inputFilePath)
-        .resize({ width: width, height: height, fit: 'contain', background: background })
+        .resize({ width: width, height: height, fit: fit, background: background })
         .jpeg({ quality: quality, progressive: true })
         .toFile(resizeFilePath)
         
@@ -42,7 +52,6 @@ fs.readdirSync('input').forEach(file => {
             console.log(`${inputFilePath} --> ${resizeFilePath} [${width}x${height}]`);
         })
         .catch(function(err) {
-            console.log(err);
-            console.log("Error occured");
+            console.log(`can not resize ${inputFilePath}`);
         });
 });
