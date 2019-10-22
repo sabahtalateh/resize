@@ -13,8 +13,8 @@
 `mode = cover` - подходит для ресайза цветных картинок которые можно обрезать
 
 ## Перед последующими использованиями очистить старые картинки
-```npm run clean_input
-npm run clean_resized```
+```npm run clean_input```
+```npm run clean_resized```
 
 ## Или одной командой
 ```npm run clean_input && npm run clean_resized```
