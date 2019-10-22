@@ -27,6 +27,11 @@ if (quality === undefined) {
     quality = parseInt(quality);
 }
 
+if (quality < 1 || quality > 100) {
+    console.log(`Invalid quality [${quality}]. should be between 1 and 100`);
+    return
+}
+
 // Parse Postfix
 let postfix = process.argv[6];
 if(postfix === undefined) {
@@ -44,8 +49,8 @@ fs.readdirSync('input').forEach(file => {
     const resizeFilePath = `${resizedFolder}/${fileNameNoExt}-${postfix}.jpg`;
 
     sharp(inputFilePath)
-        .resize({ width: width, height: height, fit: fit, background: background })
-        .jpeg({ quality: quality, progressive: true })
+        .resize({ width, height, fit, background })
+        .jpeg({ quality, progressive: true })
         .toFile(resizeFilePath)
         
         .then(function(newFileInfo) {
